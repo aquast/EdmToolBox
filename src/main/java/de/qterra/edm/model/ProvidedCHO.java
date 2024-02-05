@@ -13,328 +13,180 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 /**
  * 
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class ProvidedCHO {
+public interface ProvidedCHO {
   
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-  private List<String> dcTitle = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
-  private ArrayList<String> dcDescription = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
-  private ArrayList<String> dcCreator = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
-  private ArrayList<String> dcContributor = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
-  private ArrayList<String> dcIdentifier = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
-  private ArrayList<String> dcPublisher = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
-  private ArrayList<String> dcLanguage = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
-  private ArrayList<String> dcType = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
-  private ArrayList<String> dcDate = new ArrayList<>();
-  
-  private String dctermsCreated = new String();
-  private String dctermsIssued = new String();
-  @JacksonXmlElementWrapper(useWrapping = false)
-  private ArrayList<String> dctermsExtent = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
-  private ArrayList<ResourceAttribute> dctermsIsReferencedBy = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
-  private ArrayList<String> dctermsProvenance = new ArrayList<>();
-  
-  private String edmType = new String();
-  
   // add to List
   /**
    * @param add item to dctermsExtent
    */
-  public void addDctermsExtend(String extent) {
-    this.dctermsExtent.add(extent);
-  }
+  public void addDctermsExtend(String extent);
   /**
    * @param add item to dctermsIsReferencedBy
    */
-  public void addDctermsIsReferencedBy(ResourceAttribute isReferencedBy) {
-    this.dctermsIsReferencedBy.add(isReferencedBy);
-  }
+  public void addDctermsIsReferencedBy(ResourceAttribute isReferencedBy);
   /**
    * @param add item to dctermsProvenance
    */
-  public void addDctermsProvenance(String provenance) {
-    this.dctermsProvenance.add(provenance);
-  }
+  public void addDctermsProvenance(String provenance);
   /**
    * @param add item to dcTitle
    */
-  public void addTitle(String title) {
-    this.dcTitle.add(title);
-  }
+  public void addDcTitle(String title);
   /**
    * @param add item to dcDescription
    */
-  public void addDescription(String description) {
-    this.dcDescription.add(description);
-  }
+  public void addDcDescription(String description);
   /**
    * @param dcCreator the dcCreator to set
    */
-  public void addCreator(String creator) {
-    this.dcCreator.add(creator);
-  }
+  public void addDcCreator(String creator);
   /**
    * @param dcContributor the dcContributor to set
    */
-  public void addContributor(String contributor) {
-    this.dcContributor.add(contributor);
-  }
+  public void addDcContributor(String contributor);
   /**
    * @param dcIdentifier the dcIdentifier to set
    */
-  public void addIdentifier(String identifier) {
-    this.dcIdentifier.add(identifier);
-  }
+  public void addDcIdentifier(String identifier);
   /**
    * @param dcPublisher the dcPublisher to set
    */
-  public void addPublisher(String publisher) {
-    this.dcPublisher.add(publisher);
-  }
+  public void addDcPublisher(String publisher);
   /**
    * @param dcLanguage the dcLanguage to set
    */
-  public void addLanguage(String language) {
-    this.dcLanguage.add(language);
-  }
+  public void addDcLanguage(String language);
   /**
    * @param dcType the dcType to set
    */
-  public void addDcType(String dcType) {
-    this.dcType.add(dcType);
-  }
+  public void addDcType(String dcType);
   /**
    * @param dcDate the dcDate to set
    */
-  public void addDate(String date) {
-    this.dcDate.add(date);
-  }
+  public void addDcDate(String date);
 
   // Getter
   /**
    * @return the dcTitle
    */
-  @JacksonXmlProperty(localName="title")
-  public List<String> getDcTitle() {
-    return dcTitle;
-  }
+  public List<String> getDcTitle();
   /**
    * @return the dcDescription
    */
-  @JacksonXmlProperty(localName="description")
-  public ArrayList<String> getDcDescription() {
-    return dcDescription;
-  }
+  public ArrayList<String> getDcDescription();
   /**
    * @return the dcCreator
    */
-  @JacksonXmlProperty(localName="creator")
-  public ArrayList<String> getDcCreator() {
-    return dcCreator;
-  }
+  public ArrayList<String> getDcCreator();
   /**
    * @return the dcContributor
    */
-  @JacksonXmlProperty(localName="contributor")
-  public ArrayList<String> getDcContributor() {
-    return dcContributor;
-  }
+  public ArrayList<String> getDcContributor();
   /**
    * @return the dcIdentifier
    */
-  @JacksonXmlProperty(localName="identifier")
-  public ArrayList<String> getDcIdentifier() {
-    return dcIdentifier;
-  }
+  public ArrayList<String> getDcIdentifier();
   /**
    * @return the dcPublisher
    */
-  @JacksonXmlProperty(localName="publisher")
-  public ArrayList<String> getDcPublisher() {
-    return dcPublisher;
-  }
+  public ArrayList<String> getDcPublisher();
   /**
    * @return the dcLanguage
    */
-  @JacksonXmlProperty(localName="language")
-  public ArrayList<String> getDcLanguage() {
-    return dcLanguage;
-  }
+  public ArrayList<String> getDcLanguage();
   /**
    * @return the dcType
    */
-  @JacksonXmlProperty(namespace="http://purl.org/dc/elements/1.1/", localName="dc:type")
-  public ArrayList<String> getDcType() {
-    return dcType;
-  }
+  public ArrayList<String> getDcType();
   /**
    * @return the dcDate
    */
-  @JacksonXmlProperty(localName="date")
-  public ArrayList<String> getDcDate() {
-    return dcDate;
-  }
+  public ArrayList<String> getDcDate();
   /**
    * @return the dctermsCreated
    */
-  @JacksonXmlProperty(localName="created")
-  public String getDctermsCreated() {
-    return dctermsCreated;
-  }
+  public String getDctermsCreated();
   /**
    * @return the dctermsIssued
    */
-  @JacksonXmlProperty(localName="issued")
-  public String getDctermsIssued() {
-    return dctermsIssued;
-  }
+  public String getDctermsIssued();
   /**
    * @return the dctermsExtent
    */
-  @JacksonXmlProperty(localName="extent")
-  public ArrayList<String> getDctermsExtent() {
-    return dctermsExtent;
-  }
+  public ArrayList<String> getDctermsExtent();
   /**
    * @return the dctermsIsReferencedBy
    */
-  @JacksonXmlProperty(localName="dc:isReferencedBy")
-  public ArrayList<ResourceAttribute> getDctermsIsReferencedBy() {
-    return dctermsIsReferencedBy;
-  }
+  public ArrayList<ResourceAttribute> getDctermsIsReferencedBy();
   /**
    * @return the dctermsProvenance
    */
-  @JacksonXmlProperty(localName="provenance")
-  public ArrayList<String> getDctermsProvenance() {
-    return dctermsProvenance;
-  }
+  public ArrayList<String> getDctermsProvenance();
   /**
    * @return the edmType
    */
-  @JacksonXmlProperty(localName="type")
-  public String getEdmType() {
-    return edmType;
-  }
+  public String getEdmType();
   
   // Setter
   /**
    * @param dctermsCreated the dctermsCreated to set
    */
-  @JacksonXmlProperty(localName="created")
-  public void setDctermsCreated(String dctermsCreated) {
-    this.dctermsCreated = dctermsCreated;
-  }
+  public void setDctermsCreated(String dctermsCreated);
   /**
    * @param dctermsIssued the dctermsIssued to set
    */
-  @JacksonXmlProperty(localName="issued")
-  public void setDctermsIssued(String dctermsIssued) {
-    this.dctermsIssued = dctermsIssued;
-  }
+  public void setDctermsIssued(String dctermsIssued);
   /**
    * @param dctermsExtent the dctermsExtent to set
    */
-  @JacksonXmlProperty(localName="extent")
-  public void setDctermsExtent(ArrayList<String> dctermsExtent) {
-    this.dctermsExtent = dctermsExtent;
-  }
+  public void setDctermsExtent(ArrayList<String> dctermsExtent);
   /**
    * @param dctermsIsReferencedBy the dctermsIsReferencedBy to set
    */
-  @JacksonXmlProperty(localName="dc:isReferencedBy")
-  public void setDctermsIsReferencedBy(ArrayList<ResourceAttribute> dctermsIsReferencedBy) {
-    this.dctermsIsReferencedBy = dctermsIsReferencedBy;
-  }
+  public void setDctermsIsReferencedBy(ArrayList<ResourceAttribute> dctermsIsReferencedBy);
   /**
    * @param dctermsProvenance the dctermsProvenance to set
    */
-  @JacksonXmlProperty(localName="provenance")
-  public void setDctermsProvenance(ArrayList<String> dctermsProvenance) {
-    this.dctermsProvenance = dctermsProvenance;
-  }
+  public void setDctermsProvenance(ArrayList<String> dctermsProvenance);
   /**
    * @param edmType the edmType to set
    */
-  @JacksonXmlProperty(localName="type")
-  public void setEdmType(String edmType) {
-    this.edmType = edmType;
-  }
+  public void setEdmType(String edmType);
   /**
    * @param dcTitle the dcTitle to set
    */
-  @JacksonXmlProperty(localName="title")
-  public void setDcTitle(ArrayList<String> title) {
-    this.dcTitle = title;
-  }
+  public void setDcTitle(ArrayList<String> title);
   /**
    * @param dcDescription the dcDescription to set
    */
-  @JacksonXmlProperty(localName="description")
-  public void setDcDescription(ArrayList<String> description) {
-    this.dcDescription = description;
-  }
+  public void setDcDescription(ArrayList<String> description);
   /**
    * @param dcCreator the dcCreator to set
    */
-  @JacksonXmlProperty(localName="creator")
-  public void setDcCreator(ArrayList<String> creator) {
-    if(this.dcCreator == null) {
-      this.dcCreator = new ArrayList<String>();
-    }
-    this.dcCreator = creator;
-  }
+  public void setDcCreator(ArrayList<String> creator);
   /**
    * @param dcContributor the dcContributor to set
    */
-  @JacksonXmlProperty(localName="contributor")
-  public void setDcContributor(ArrayList<String> contributor) {
-    this.dcContributor = contributor;
-  }
+  public void setDcContributor(ArrayList<String> contributor);
   /**
    * @param dcIdentifier the dcIdentifier to set
    */
-  @JacksonXmlProperty(localName="identifier")
-  public void setDcIdentifier(ArrayList<String> identifier) {
-    this.dcIdentifier = identifier;
-  }
+  public void setDcIdentifier(ArrayList<String> identifier);
   /**
    * @param dcPublisher the dcPublisher to set
    */
-  @JacksonXmlProperty(localName="publisher")
-  public void setDcPublisher(ArrayList<String> publisher) {
-    this.dcPublisher = publisher;
-  }
+  public void setDcPublisher(ArrayList<String> publisher);
   /**
    * @param dcLanguage the dcLanguage to set
    */
-  @JacksonXmlProperty(localName="language")
-  public void setDcLanguage(ArrayList<String> language) {
-    this.dcLanguage = language;
-  }
+  public void setDcLanguage(ArrayList<String> language);
   /**
    * @param dcType the dcType to set
    */
-  @JacksonXmlProperty(namespace="http://purl.org/dc/elements/1.1/", localName="dc:type")
- public void setDcType(ArrayList<String> type) {
-    this.dcType = type;
-  }
+ public void setDcType(ArrayList<String> type);
   /**
    * @param dcDate the dcDate to set
    */
-  @JacksonXmlProperty(localName="date")
-  public void setDcDate(ArrayList<String> date) {
-    this.dcDate = date;
-  }
+  public void setDcDate(ArrayList<String> date);
 }

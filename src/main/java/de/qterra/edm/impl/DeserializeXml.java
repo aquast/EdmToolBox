@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import de.qterra.edm.model.Edm;
+import de.qterra.edm.model.deserialize.DeserializeEdm;
 
 /**
  * 
@@ -31,7 +32,7 @@ public class DeserializeXml {
     edmIs = loadXml();
   }
 
-  private Edm edm = new Edm();
+  private Edm edm = new DeserializeEdm();
   private File importFile = null;
   private InputStream edmIs = null;
   
@@ -48,10 +49,10 @@ public class DeserializeXml {
   }
   
   public Edm deserialize() {
-    Edm edm = null;
+    DeserializeEdm edm = null;
     XmlMapper xmlMapper = new XmlMapper();
     try {
-      edm = xmlMapper.readValue(edmIs, Edm.class);
+      edm = xmlMapper.readValue(edmIs, DeserializeEdm.class);
 
     } catch (StreamReadException e) {
       // TODO Auto-generated catch block

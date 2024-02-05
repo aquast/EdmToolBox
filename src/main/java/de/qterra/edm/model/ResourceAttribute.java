@@ -3,37 +3,20 @@
  */
 package de.qterra.edm.model;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-
 /**
  * 
  */
-public class ResourceAttribute {
-
-  public ResourceAttribute() {
-    
-  }
-  public ResourceAttribute(String rdfResource) {
-    this.rdfResource = rdfResource;
-  }
-  
-  private String rdfResource = null;
+public interface ResourceAttribute {
 
   /**
    * @return the rdfResource
    */
-  @JacksonXmlProperty(localName = "resource", isAttribute = true)
-  public String getRdfResource() {
-    return rdfResource;
-  }
-
+  public String getRdfResource();
+  
   /**
    * @param rdfResource the rdfResource to set
    */
-  @JacksonXmlProperty(localName = "resource", isAttribute = true)
-  public void setRdfResource(String rdfResource) {
-    this.rdfResource = rdfResource;
-  }
+  public void setRdfResource(String rdfResource);
   
   
   

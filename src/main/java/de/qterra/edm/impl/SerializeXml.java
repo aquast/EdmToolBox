@@ -6,6 +6,7 @@ package de.qterra.edm.impl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
+import de.qterra.edm.model.serialize.SerializeEdm;
 import de.qterra.edm.model.Edm;
 
 /**
@@ -13,7 +14,7 @@ import de.qterra.edm.model.Edm;
  */
 public class SerializeXml {
 
-  private Edm edm = new Edm();
+  private Edm edm = new SerializeEdm();
   
   
   public void serialize() {
@@ -23,7 +24,7 @@ public class SerializeXml {
       xml = xmlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(edm);
       System.out.println(xml);
       //System.out.println("XML Desearialzing....");
-      //Edm edm = xmlMapper.readValue(xml, Edm.class);
+      //SerializeEdm edm = xmlMapper.readValue(xml, SerializeEdm.class);
       //System.out.println(xmlMapper.writeValueAsString(edm));
     } catch (JsonProcessingException e) {
       // TODO Auto-generated catch block

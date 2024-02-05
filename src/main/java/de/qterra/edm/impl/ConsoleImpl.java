@@ -10,6 +10,10 @@ import de.qterra.edm.model.ProvidedCHO;
 import de.qterra.edm.model.Aggregation;
 import de.qterra.edm.model.OaiRecord;
 import de.qterra.edm.model.ResourceAttribute;
+import de.qterra.edm.model.serialize.SerializeAggregation;
+import de.qterra.edm.model.serialize.SerializeEdm;
+import de.qterra.edm.model.serialize.SerializeProvidedCHO;
+import de.qterra.edm.model.serialize.SerializeResourceAttribute;
 
 
 /**
@@ -24,15 +28,16 @@ public class ConsoleImpl {
   public static void main(String[] args) {
     
     ConsoleImpl impl = new ConsoleImpl();
-    Edm exEdm = impl.generateExampleEDM();
-    // impl.serializeXml(exEdm);
+    SerializeEdm exEdm = (SerializeEdm) impl.generateExampleEDM();
+    //impl.serializeXml(exEdm);
 
     if (args != null && args.length > 0) {
       impl.filePath = args[0];
     }
     
       Edm resultEdm =impl.deserializeXml();
-      impl.serializeXml(resultEdm);
+      System.out.println(resultEdm.getOaiMethod());
+      //impl.serializeXml((SerializeEdm) resultEdm);
     
   }
   
@@ -42,14 +47,14 @@ public class ConsoleImpl {
     
   }
 
-  public void serializeXml(Edm edm) {
+  public void serializeXml(SerializeEdm edm) {
     SerializeXml sXml = new SerializeXml();
     sXml.setEdm(edm);
     sXml.serialize();    
   }
     
   /**
-   * @return Edm as Edm object for testing
+   * @return SerializeEdm as SerializeEdm object for testing
    */
   public Edm generateExampleEDM() {
     
@@ -64,21 +69,21 @@ public class ConsoleImpl {
     String edmType ="TEXT";
     String dcType="Archivalie";
 
-    Edm edm = new Edm();
+    Edm edm = new SerializeEdm();
     
-    ProvidedCHO provCho = new ProvidedCHO();
-    provCho.addTitle("Eine neue Hühnerfarm");
+    ProvidedCHO provCho = new SerializeProvidedCHO();
+    provCho.addDcTitle("Eine neue Hühnerfarm");
     provCho.setDcCreator(creator);
     provCho.setDcDescription(description);
-    provCho.addContributor("Andres Quast");
-    provCho.addContributor("Björn Quast");
+    provCho.addDcContributor("Andres Quast");
+    provCho.addDcContributor("Björn Quast");
     provCho.setDctermsExtent(extent);
     provCho.setEdmType(edmType);
     provCho.addDcType(dcType);
 
-    Aggregation aggregation = new Aggregation();
-    aggregation.setDataProvider("Hochschulbibliothekszentrum NRW");
-    aggregation.setAggregatedCHO(new ResourceAttribute("12345"));
+    Aggregation aggregation = new SerializeAggregation();
+    aggregation.setEdmDataProvider("Hochschulbibliothekszentrum NRW");
+    aggregation.setEdmAggregatedCHO(new SerializeResourceAttribute("12345"));
     
     ArrayList<OaiRecord> oRecord = edm.getOaiMethod().getRecord();
     oRecord.get(0).getMetadata().getRdf().setProvidedCho(provCho);
