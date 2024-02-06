@@ -3,37 +3,30 @@
  */
 package de.qterra.edm.model;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import de.qterra.edm.model.deserialize.DeserializeResourceAttribute;
+import de.qterra.edm.model.serialize.SerializeResourceAttribute;
 
 /**
  * 
  */
-public class ResourceAttribute {
-
-  public ResourceAttribute() {
-    
-  }
-  public ResourceAttribute(String rdfResource) {
-    this.rdfResource = rdfResource;
-  }
-  
-  private String rdfResource = null;
+@JsonDeserialize(as = DeserializeResourceAttribute.class)
+// @JsonSerialize(as = SerializeResourceAttribute.class)
+@JsonIgnoreProperties(ignoreUnknown = true)  
+public interface ResourceAttribute {
 
   /**
    * @return the rdfResource
    */
-  @JacksonXmlProperty(localName = "resource", isAttribute = true)
-  public String getRdfResource() {
-    return rdfResource;
-  }
-
+  public String getRdfResource();
+  
   /**
    * @param rdfResource the rdfResource to set
    */
-  @JacksonXmlProperty(localName = "resource", isAttribute = true)
-  public void setRdfResource(String rdfResource) {
-    this.rdfResource = rdfResource;
-  }
+  public void setRdfResource(String rdfResource);
   
   
   

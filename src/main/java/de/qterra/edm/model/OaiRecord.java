@@ -3,34 +3,28 @@
  */
 package de.qterra.edm.model;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import de.qterra.edm.model.deserialize.DeserializeOaiRecord;
+import de.qterra.edm.model.serialize.SerializeOaiRecord;
 
 /**
  * 
  */
-public class OaiRecord {
+@JsonDeserialize(as = DeserializeOaiRecord.class)
+// @JsonSerialize(as = SerializeOaiRecord.class)
+public interface OaiRecord {
 
-  @JacksonXmlProperty(localName="header")
-  private OaiHeader header = new OaiHeader();
-  private OaiMetadata metadata = new OaiMetadata();
-
-  /**
+   /**
    * @return the metadata
    */
-  @JacksonXmlProperty(localName="metadata")
-  public OaiMetadata getMetadata() {
-    return metadata;
-  }
+  public OaiMetadata getMetadata();
   
-  
-
+ 
   /**
    * @param metadata the metadata to set
    */
-  @JacksonXmlProperty(localName="metadata")
-  public void setMetadata(OaiMetadata metadata) {
-    this.metadata = metadata;
-  }
-  
+  public void setMetadata(OaiMetadata metadata);
   
 }

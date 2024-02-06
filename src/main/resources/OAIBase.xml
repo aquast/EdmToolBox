@@ -5,6 +5,8 @@
          xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
   <responseDate>2024-01-30T08:58:47Z</responseDate>
 <ListRecords>
-
-
+  <header>
+    <identifier>oai:danrw:de:20240132-12345-min</identifier>
+    <datestamp>2024-01-30T08:54:26Z</datestamp>
+  </header>
 </ListRecords></OAI-PMH>
