@@ -14,7 +14,7 @@ import de.qterra.edm.model.OaiMethod;
  * 
  */
 @JacksonXmlRootElement(localName="OAI-PMH")
-//@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DeserializeEdm implements Edm {
   
 
@@ -29,6 +29,7 @@ public class DeserializeEdm implements Edm {
   /**
    * @return the oaiXmlns
    */
+  @Override
   @JacksonXmlProperty(localName="xmlns", isAttribute = true)
   public String getOaiXmlns() {
     return oaiXmlns;
@@ -37,6 +38,7 @@ public class DeserializeEdm implements Edm {
   /**
    * @return the xsiXmlns
    */
+  @Override
   @JacksonXmlProperty(localName="xmlns:xsi", isAttribute = true)
   public String getXsiXmlns() {
     return xsiXmlns;
@@ -45,6 +47,7 @@ public class DeserializeEdm implements Edm {
   /**
    * @return the getRecord
    */
+  @Override
   @JacksonXmlProperty(localName="ListRecords")
   public OaiMethod getOaiMethod() {
     return oaiMethod;
@@ -53,6 +56,7 @@ public class DeserializeEdm implements Edm {
   /**
    * @return the xsiSchemaLocation
    */
+  @Override
   @JacksonXmlProperty(localName="schemaLocation", isAttribute = true)
   public String getXsiSchemaLocation() {
     return xsiSchemaLocation;
@@ -61,11 +65,13 @@ public class DeserializeEdm implements Edm {
   /**
    * @return the responseDate
    */
+  @Override
   @JacksonXmlProperty(localName="responseDate")
   public String getResponseDate() {
     return ResponseDate;
   }
 
+  @Override
   @JacksonXmlProperty(localName="responseDate")
   public void setResponseDate(String rDate) {
     this.ResponseDate = rDate;
@@ -77,7 +83,7 @@ public class DeserializeEdm implements Edm {
    * @param oMethod the oMethod to set
    */
   @Override
-  @JacksonXmlProperty(localName="GetRecord")
+  @JacksonXmlProperty(localName="ListRecord")
   public void setOaiMethod(OaiMethod oaiMethod) {
     this.oaiMethod = (DeserializeOaiMethod) oaiMethod;    
   }

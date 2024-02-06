@@ -23,16 +23,12 @@ public class DeserializeAggregation implements Aggregation {
   
   private String dataProvider = new String();
 
-  @JacksonXmlProperty(localName = "isShownBy")
   private ResourceAttribute isShownBy = null;
 
-  @JacksonXmlProperty(localName = "isShownAt")
   private String isShownAt = null;
 
-  @JacksonXmlProperty(localName = "object")
   private ResourceAttribute object = null;
   
-  @JacksonXmlProperty(localName = "rights")
   private ResourceAttribute rights = null;
 
   @JacksonXmlProperty(localName = "rdf:about", isAttribute = true)
@@ -50,7 +46,7 @@ public class DeserializeAggregation implements Aggregation {
   /**
    * @return the aggregatedCHO
    */
-  @JacksonXmlProperty(localName = "aggregatedCHO")
+  @JacksonXmlProperty(localName = "edm:aggregatedCHO")
   public ResourceAttribute getEdmAggregatedCHO() {
     return aggregatedCHO;
   }
@@ -58,14 +54,15 @@ public class DeserializeAggregation implements Aggregation {
   /**
    * @return the provider
    */
-  public String getEdmProvider() {
+  @JacksonXmlProperty(localName = "edm:provider")
+ public String getEdmProvider() {
     return provider;
   }
 
   /**
    * @return the dataProvider
    */
-  @JacksonXmlProperty(localName = "dataProvider")
+  @JacksonXmlProperty(localName = "edm:dataProvider")
   public String getEdmDataProvider() {
     return dataProvider;
   }
@@ -73,6 +70,7 @@ public class DeserializeAggregation implements Aggregation {
   /**
    * @return the isShownBy
    */
+  @JacksonXmlProperty(localName = "edm:isShownBy")
   public ResourceAttribute getEdmIsShownBy() {
     return isShownBy;
   }
@@ -80,6 +78,7 @@ public class DeserializeAggregation implements Aggregation {
   /**
    * @return the isShownAt
    */
+  @JacksonXmlProperty(localName = "edm:isShownAt")
   public String getEdmIsShownAt() {
     return isShownAt;
   }
@@ -87,6 +86,7 @@ public class DeserializeAggregation implements Aggregation {
   /**
    * @return the object
    */
+  @JacksonXmlProperty(localName = "edm:object")
   public ResourceAttribute getEdmObject() {
     return object;
   }
@@ -94,6 +94,7 @@ public class DeserializeAggregation implements Aggregation {
   /**
    * @return the rights
    */
+  @JacksonXmlProperty(localName = "edm:rights")
   public ResourceAttribute getEdmRights() {
     return rights;
   }

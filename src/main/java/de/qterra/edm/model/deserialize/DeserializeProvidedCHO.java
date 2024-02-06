@@ -23,32 +23,20 @@ import de.qterra.edm.model.AboutAttribute;
 public class DeserializeProvidedCHO implements ProvidedCHO{
   
 
-  @JacksonXmlElementWrapper(useWrapping = false)
   private List<String> dcTitle = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
   private ArrayList<String> dcDescription = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
   private ArrayList<String> dcCreator = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
   private ArrayList<String> dcContributor = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
   private ArrayList<String> dcIdentifier = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
   private ArrayList<String> dcPublisher = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
   private ArrayList<String> dcLanguage = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
   private ArrayList<String> dcType = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
   private ArrayList<String> dcDate = new ArrayList<>();
   
   private String dctermsCreated = new String();
   private String dctermsIssued = new String();
-  @JacksonXmlElementWrapper(useWrapping = false)
   private ArrayList<String> dctermsExtent = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
-  private ArrayList<ResourceAttribute> dctermsIsReferencedBy = new ArrayList<>();
-  @JacksonXmlElementWrapper(useWrapping = false)
+  private ArrayList<DeserializeResourceAttribute> dctermsIsReferencedBy = new ArrayList<>();
   private ArrayList<String> dctermsProvenance = new ArrayList<>();
   
   private String edmType = new String();
@@ -58,7 +46,6 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
    * @param add item to dctermsExtent
    */
   @Override
-  @JacksonXmlProperty(localName="extent")
   public void addDctermsExtend(String extent) {
     this.dctermsExtent.add(extent);
   }
@@ -66,15 +53,13 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
    * @param add item to dctermsIsReferencedBy
    */
   @Override
-  @JacksonXmlProperty(localName="isReferencedBy")
   public void addDctermsIsReferencedBy(ResourceAttribute isReferencedBy) {
-    this.dctermsIsReferencedBy.add(isReferencedBy);
+    this.dctermsIsReferencedBy.add((DeserializeResourceAttribute) isReferencedBy);
   }
   /**
    * @param add item to dctermsProvenance
    */
   @Override
-  @JacksonXmlProperty(localName="provenance")
   public void addDctermsProvenance(String provenance) {
     this.dctermsProvenance.add(provenance);
   }
@@ -82,7 +67,6 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
    * @param add item to dcTitle
    */
   @Override
-  @JacksonXmlProperty(localName="title")
   public void addDcTitle(String title) {
     this.dcTitle.add(title);
   }
@@ -90,7 +74,6 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
    * @param add item to dcDescription
    */
   @Override
-  @JacksonXmlProperty(localName="description")
   public void addDcDescription(String description) {
     this.dcDescription.add(description);
   }
@@ -98,7 +81,6 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
    * @param dcCreator the dcCreator to set
    */
   @Override
-  @JacksonXmlProperty(localName="creator")
   public void addDcCreator(String creator) {
     this.dcCreator.add(creator);
   }
@@ -106,7 +88,6 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
    * @param dcContributor the dcContributor to set
    */
   @Override
-  @JacksonXmlProperty(localName="contributor")
   public void addDcContributor(String contributor) {
     this.dcContributor.add(contributor);
   }
@@ -114,7 +95,6 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
    * @param dcIdentifier the dcIdentifier to set
    */
   @Override
-  @JacksonXmlProperty(localName="identifier")
   public void addDcIdentifier(String identifier) {
     this.dcIdentifier.add(identifier);
   }
@@ -122,7 +102,6 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
    * @param dcPublisher the dcPublisher to set
    */
   @Override
-  @JacksonXmlProperty(localName="publisher")
   public void addDcPublisher(String publisher) {
     this.dcPublisher.add(publisher);
   }
@@ -130,7 +109,6 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
    * @param dcLanguage the dcLanguage to set
    */
   @Override
-  @JacksonXmlProperty(localName="language")
   public void addDcLanguage(String language) {
     this.dcLanguage.add(language);
   }
@@ -151,105 +129,117 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
   /**
    * @return the dcTitle
    */
-  @JacksonXmlProperty(localName="title")
+  @JacksonXmlElementWrapper(useWrapping = false)
+  @JacksonXmlProperty(localName="dc:title")
   public List<String> getDcTitle() {
     return dcTitle;
   }
   /**
    * @return the dcDescription
    */
-  @JacksonXmlProperty(localName="description")
+  @JacksonXmlElementWrapper(useWrapping = false)
+  @JacksonXmlProperty(localName="dc:description")
   public ArrayList<String> getDcDescription() {
     return dcDescription;
   }
   /**
    * @return the dcCreator
    */
-  @JacksonXmlProperty(localName="creator")
+  @JacksonXmlElementWrapper(useWrapping = false)
+  @JacksonXmlProperty(localName="dc:creator")
   public ArrayList<String> getDcCreator() {
     return dcCreator;
   }
   /**
    * @return the dcContributor
    */
-  @JacksonXmlProperty(localName="contributor")
+  @JacksonXmlElementWrapper(useWrapping = false)
+  @JacksonXmlProperty(localName="dc:contributor")
   public ArrayList<String> getDcContributor() {
     return dcContributor;
   }
   /**
    * @return the dcIdentifier
    */
-  @JacksonXmlProperty(localName="identifier")
+  @JacksonXmlElementWrapper(useWrapping = false)
+  @JacksonXmlProperty(localName="dc:identifier")
   public ArrayList<String> getDcIdentifier() {
     return dcIdentifier;
   }
   /**
    * @return the dcPublisher
    */
-  @JacksonXmlProperty(localName="publisher")
+  @JacksonXmlElementWrapper(useWrapping = false)
+  @JacksonXmlProperty(localName="dc:publisher")
   public ArrayList<String> getDcPublisher() {
     return dcPublisher;
   }
   /**
    * @return the dcLanguage
    */
-  @JacksonXmlProperty(localName="language")
+  @JacksonXmlElementWrapper(useWrapping = false)
+  @JacksonXmlProperty(localName="dc:language")
   public ArrayList<String> getDcLanguage() {
     return dcLanguage;
   }
   /**
    * @return the dcType
    */
-  @JacksonXmlProperty(namespace="http://purl.org/dc/elements/1.1/", localName="dc:type")
+  @JacksonXmlElementWrapper(useWrapping = false)
+  @JacksonXmlProperty(localName="dc:type")
   public ArrayList<String> getDcType() {
     return dcType;
   }
   /**
    * @return the dcDate
    */
-  @JacksonXmlProperty(localName="date")
+  @JacksonXmlElementWrapper(useWrapping = false)
+  @JacksonXmlProperty(localName="dc:date")
   public ArrayList<String> getDcDate() {
     return dcDate;
   }
   /**
    * @return the dctermsCreated
    */
-  @JacksonXmlProperty(localName="created")
+  @JacksonXmlProperty(localName="dcterms:created")
   public String getDctermsCreated() {
     return dctermsCreated;
   }
   /**
    * @return the dctermsIssued
    */
-  @JacksonXmlProperty(localName="issued")
+  @JacksonXmlProperty(localName="dcterms:issued")
   public String getDctermsIssued() {
     return dctermsIssued;
   }
   /**
    * @return the dctermsExtent
    */
-  @JacksonXmlProperty(localName="extent")
+  @JacksonXmlElementWrapper(useWrapping = false)
+  @JacksonXmlProperty(localName="dcterms:extent")
   public ArrayList<String> getDctermsExtent() {
     return dctermsExtent;
   }
   /**
    * @return the dctermsIsReferencedBy
    */
-  @JacksonXmlProperty(localName="dc:isReferencedBy")
-  public ArrayList<ResourceAttribute> getDctermsIsReferencedBy() {
+  @JacksonXmlElementWrapper(useWrapping = false)
+  @JacksonXmlProperty(localName="dcterms:isReferencedBy")
+  public ArrayList<? extends ResourceAttribute> getDctermsIsReferencedBy() {
     return dctermsIsReferencedBy;
   }
   /**
    * @return the dctermsProvenance
    */
-  @JacksonXmlProperty(localName="provenance")
+  @JacksonXmlElementWrapper(useWrapping = false)
+  @JacksonXmlProperty(localName="dcterms:provenance")
   public ArrayList<String> getDctermsProvenance() {
     return dctermsProvenance;
   }
   /**
    * @return the edmType
    */
-  @JacksonXmlProperty(localName="type")
+  @JacksonXmlProperty(localName="edm:type")
   public String getEdmType() {
     return edmType;
   }
@@ -272,6 +262,7 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
   /**
    * @param dctermsExtent the dctermsExtent to set
    */
+  @JacksonXmlElementWrapper(useWrapping = false)
   @JacksonXmlProperty(localName="extent")
   public void setDctermsExtent(ArrayList<String> dctermsExtent) {
     this.dctermsExtent = dctermsExtent;
@@ -279,13 +270,15 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
   /**
    * @param dctermsIsReferencedBy the dctermsIsReferencedBy to set
    */
-  @JacksonXmlProperty(localName="dc:isReferencedBy")
-  public void setDctermsIsReferencedBy(ArrayList<ResourceAttribute> dctermsIsReferencedBy) {
-    this.dctermsIsReferencedBy = dctermsIsReferencedBy;
+  @JacksonXmlElementWrapper(useWrapping = false)
+  @JacksonXmlProperty(localName="isReferencedBy")
+  public void setDctermsIsReferencedBy(ArrayList<?extends ResourceAttribute> dctermsIsReferencedBy) {
+    this.dctermsIsReferencedBy = (ArrayList<DeserializeResourceAttribute>) dctermsIsReferencedBy;
   }
   /**
    * @param dctermsProvenance the dctermsProvenance to set
    */
+  @JacksonXmlElementWrapper(useWrapping = false)
   @JacksonXmlProperty(localName="provenance")
   public void setDctermsProvenance(ArrayList<String> dctermsProvenance) {
     this.dctermsProvenance = dctermsProvenance;
@@ -300,6 +293,7 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
   /**
    * @param dcTitle the dcTitle to set
    */
+  @JacksonXmlElementWrapper(useWrapping = false)
   @JacksonXmlProperty(localName="title")
   public void setDcTitle(ArrayList<String> title) {
     this.dcTitle = title;
@@ -307,6 +301,7 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
   /**
    * @param dcDescription the dcDescription to set
    */
+  @JacksonXmlElementWrapper(useWrapping = false)
   @JacksonXmlProperty(localName="description")
   public void setDcDescription(ArrayList<String> description) {
     this.dcDescription = description;
@@ -314,6 +309,7 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
   /**
    * @param dcCreator the dcCreator to set
    */
+  @JacksonXmlElementWrapper(useWrapping = false)
   @JacksonXmlProperty(localName="creator")
   public void setDcCreator(ArrayList<String> creator) {
     if(this.dcCreator == null) {
@@ -324,6 +320,7 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
   /**
    * @param dcContributor the dcContributor to set
    */
+  @JacksonXmlElementWrapper(useWrapping = false)
   @JacksonXmlProperty(localName="contributor")
   public void setDcContributor(ArrayList<String> contributor) {
     this.dcContributor = contributor;
@@ -331,6 +328,7 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
   /**
    * @param dcIdentifier the dcIdentifier to set
    */
+  @JacksonXmlElementWrapper(useWrapping = false)
   @JacksonXmlProperty(localName="identifier")
   public void setDcIdentifier(ArrayList<String> identifier) {
     this.dcIdentifier = identifier;
@@ -338,6 +336,7 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
   /**
    * @param dcPublisher the dcPublisher to set
    */
+  @JacksonXmlElementWrapper(useWrapping = false)
   @JacksonXmlProperty(localName="publisher")
   public void setDcPublisher(ArrayList<String> publisher) {
     this.dcPublisher = publisher;
@@ -345,6 +344,7 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
   /**
    * @param dcLanguage the dcLanguage to set
    */
+  @JacksonXmlElementWrapper(useWrapping = false)
   @JacksonXmlProperty(localName="language")
   public void setDcLanguage(ArrayList<String> language) {
     this.dcLanguage = language;
@@ -352,13 +352,15 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
   /**
    * @param dcType the dcType to set
    */
-  @JacksonXmlProperty(namespace="http://purl.org/dc/elements/1.1/", localName="dc:type")
+  @JacksonXmlElementWrapper(useWrapping = false)
+  @JacksonXmlProperty(localName="type")
  public void setDcType(ArrayList<String> type) {
     this.dcType = type;
   }
   /**
    * @param dcDate the dcDate to set
    */
+  @JacksonXmlElementWrapper(useWrapping = false)
   @JacksonXmlProperty(localName="date")
   public void setDcDate(ArrayList<String> date) {
     this.dcDate = date;

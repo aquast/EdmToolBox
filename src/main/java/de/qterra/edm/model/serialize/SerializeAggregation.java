@@ -23,10 +23,8 @@ public class SerializeAggregation implements Aggregation {
   
   private String dataProvider = new String();
 
-  @JacksonXmlProperty(localName = "isShownBy")
   private SerializeResourceAttribute isShownBy = null;
 
-  @JacksonXmlProperty(localName = "isShownAt")
   private String isShownAt = null;
 
   @JacksonXmlProperty(localName = "edm:object")

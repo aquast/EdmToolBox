@@ -44,7 +44,7 @@ public class SerializeProvidedCHO implements ProvidedCHO {
   @JacksonXmlElementWrapper(useWrapping = false)
   private ArrayList<String> dctermsExtent = new ArrayList<>();
   @JacksonXmlElementWrapper(useWrapping = false)
-  private ArrayList<ResourceAttribute> dctermsIsReferencedBy = null;
+  private ArrayList<SerializeResourceAttribute> dctermsIsReferencedBy = null;
   @JacksonXmlElementWrapper(useWrapping = false)
   private ArrayList<String> dctermsProvenance = new ArrayList<>();
   
@@ -63,7 +63,7 @@ public class SerializeProvidedCHO implements ProvidedCHO {
    */
   @Override
   public void addDctermsIsReferencedBy(ResourceAttribute isReferencedBy) {
-    this.dctermsIsReferencedBy.add(isReferencedBy);
+    this.dctermsIsReferencedBy.add((SerializeResourceAttribute) isReferencedBy);
   }
   /**
    * @param add item to dctermsProvenance
@@ -244,7 +244,7 @@ public class SerializeProvidedCHO implements ProvidedCHO {
    */
   @Override
   @JacksonXmlProperty(localName="dcterms:isReferencedBy")
-  public ArrayList<ResourceAttribute> getDctermsIsReferencedBy() {
+  public ArrayList<? extends ResourceAttribute> getDctermsIsReferencedBy() {
     return dctermsIsReferencedBy;
   }
   /**
@@ -294,8 +294,8 @@ public class SerializeProvidedCHO implements ProvidedCHO {
    */
   @Override
   @JacksonXmlProperty(localName="dcterms:isReferencedBy")
-  public void setDctermsIsReferencedBy(ArrayList<ResourceAttribute> dctermsIsReferencedBy) {
-    this.dctermsIsReferencedBy = dctermsIsReferencedBy;
+  public void setDctermsIsReferencedBy(ArrayList<? extends ResourceAttribute> dctermsIsReferencedBy) {
+    this.dctermsIsReferencedBy = (ArrayList<SerializeResourceAttribute>) dctermsIsReferencedBy;
   }
   /**
    * @param dctermsProvenance the dctermsProvenance to set

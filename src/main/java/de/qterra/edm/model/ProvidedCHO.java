@@ -7,12 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+
+import de.qterra.edm.model.deserialize.DeserializeProvidedCHO;
+import de.qterra.edm.model.deserialize.DeserializeRdf;
+import de.qterra.edm.model.serialize.SerializeProvidedCHO;
+import de.qterra.edm.model.serialize.SerializeResourceAttribute;
 
 /**
  * 
  */
+@JsonDeserialize(as = DeserializeProvidedCHO.class)
+// @JsonSerialize(as = SerializeProvidedCHO.class)
 public interface ProvidedCHO {
   
 
@@ -118,7 +127,7 @@ public interface ProvidedCHO {
   /**
    * @return the dctermsIsReferencedBy
    */
-  public ArrayList<ResourceAttribute> getDctermsIsReferencedBy();
+  public ArrayList<? extends ResourceAttribute> getDctermsIsReferencedBy();
   /**
    * @return the dctermsProvenance
    */
@@ -144,7 +153,7 @@ public interface ProvidedCHO {
   /**
    * @param dctermsIsReferencedBy the dctermsIsReferencedBy to set
    */
-  public void setDctermsIsReferencedBy(ArrayList<ResourceAttribute> dctermsIsReferencedBy);
+  public void setDctermsIsReferencedBy(ArrayList<? extends ResourceAttribute> dctermsIsReferencedBy);
   /**
    * @param dctermsProvenance the dctermsProvenance to set
    */

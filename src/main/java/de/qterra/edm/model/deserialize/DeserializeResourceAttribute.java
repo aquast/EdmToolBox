@@ -24,7 +24,7 @@ public class DeserializeResourceAttribute implements ResourceAttribute {
   /**
    * @return the rdfResource
    */
-  @JacksonXmlProperty(localName = "resource", isAttribute = true)
+  @JacksonXmlProperty(localName = "rdf:resource", isAttribute = true)
   public String getRdfResource() {
     return rdfResource;
   }

@@ -3,9 +3,17 @@
  */
 package de.qterra.edm.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import de.qterra.edm.model.deserialize.DeserializeOaiRecord;
+import de.qterra.edm.model.serialize.SerializeOaiRecord;
+
 /**
  * 
  */
+@JsonDeserialize(as = DeserializeOaiRecord.class)
+// @JsonSerialize(as = SerializeOaiRecord.class)
 public interface OaiRecord {
 
    /**

@@ -3,12 +3,18 @@ package de.qterra.edm.model;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
+import de.qterra.edm.model.deserialize.DeserializeRdf;
+import de.qterra.edm.model.serialize.SerializeRdf;
+
+@JsonDeserialize(as = DeserializeRdf.class)
+// @JsonSerialize(as = SerializeRdf.class)
 @JsonIgnoreProperties(ignoreUnknown = true)  
-@JacksonXmlRootElement(localName="rdf:RDF")
 public interface Rdf {
 
   /**
@@ -49,12 +55,12 @@ public interface Rdf {
   /**
    * @return the aggregation
    */
-  public ArrayList<Aggregation> getAggregation();
+  public ArrayList<? extends Aggregation> getAggregation();
 
   /**
    * @param aggregation the aggregation to set
    */
-  public void setAggregation(ArrayList<Aggregation> aggregation);
+  public void setAggregation(ArrayList<? extends Aggregation> aggregation);
 
   /**
    * @param providedCHO the providedCHO to set

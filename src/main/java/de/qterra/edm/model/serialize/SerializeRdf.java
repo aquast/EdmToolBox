@@ -23,7 +23,7 @@ public class SerializeRdf implements Rdf{
   
   private ProvidedCHO providedCHO = new SerializeProvidedCHO();
   @JacksonXmlElementWrapper(useWrapping = false)
-  private ArrayList<Aggregation> aggregation = new ArrayList<>();
+  private ArrayList<SerializeAggregation> aggregation = new ArrayList<>();
   
   /**
    * @return the rdfXmlns
@@ -71,9 +71,9 @@ public class SerializeRdf implements Rdf{
   @Override
   public void addAggregation(Aggregation aggregation) {
     if(this.aggregation == null) {
-      this.aggregation = new ArrayList<Aggregation>();
+      this.aggregation = new ArrayList<SerializeAggregation>();
     }
-    this.aggregation.add(aggregation);
+    this.aggregation.add((SerializeAggregation) aggregation);
   }
 
   /**
@@ -88,7 +88,7 @@ public class SerializeRdf implements Rdf{
    * @return the aggregation
    */
  @JacksonXmlProperty(localName="ore:Aggregation")
-  public ArrayList<Aggregation> getAggregation() {
+  public ArrayList<? extends Aggregation> getAggregation() {
     return aggregation;
   }
 
@@ -97,11 +97,11 @@ public class SerializeRdf implements Rdf{
    */
   @Override
   @JacksonXmlProperty(localName="ore:Aggregation")
-  public void setAggregation(ArrayList<Aggregation> aggregation) {
+  public void setAggregation(ArrayList<? extends Aggregation> aggregation) {
     if(this.aggregation == null) {
-      this.aggregation = new ArrayList<Aggregation>();
+      this.aggregation = new ArrayList<SerializeAggregation>();
     }
-    this.aggregation = aggregation;
+    this.aggregation = (ArrayList<SerializeAggregation>) aggregation;
   }
 
   /**

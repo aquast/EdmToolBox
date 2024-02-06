@@ -21,23 +21,26 @@ import de.qterra.edm.model.serialize.SerializeResourceAttribute;
  */
 public class ConsoleImpl {
 
-  private String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "src/main/resources/EDM.xml";
+  String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "src/main/resources/EDM.xml";
+  
+  //String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "src/main/resources/OAIBase.xml";
+
   /**
    * @param args
    */
   public static void main(String[] args) {
     
     ConsoleImpl impl = new ConsoleImpl();
-    SerializeEdm exEdm = (SerializeEdm) impl.generateExampleEDM();
-    //impl.serializeXml(exEdm);
+     SerializeEdm exEdm = (SerializeEdm) impl.generateExampleEDM();
+     impl.serializeXml(exEdm);
 
     if (args != null && args.length > 0) {
       impl.filePath = args[0];
     }
     
-      Edm resultEdm =impl.deserializeXml();
-      System.out.println(resultEdm.getOaiMethod());
-      //impl.serializeXml((SerializeEdm) resultEdm);
+      Edm resultEdm = impl.deserializeXml();
+      System.out.println(resultEdm.getOaiMethod().getRecord().get(0).getMetadata().getRdf().getProvidedCho());
+      impl.serializeXml(resultEdm);
     
   }
   
@@ -47,7 +50,7 @@ public class ConsoleImpl {
     
   }
 
-  public void serializeXml(SerializeEdm edm) {
+  public void serializeXml(Edm edm) {
     SerializeXml sXml = new SerializeXml();
     sXml.setEdm(edm);
     sXml.serialize();    
@@ -85,7 +88,7 @@ public class ConsoleImpl {
     aggregation.setEdmDataProvider("Hochschulbibliothekszentrum NRW");
     aggregation.setEdmAggregatedCHO(new SerializeResourceAttribute("12345"));
     
-    ArrayList<OaiRecord> oRecord = edm.getOaiMethod().getRecord();
+    ArrayList<? extends OaiRecord> oRecord = edm.getOaiMethod().getRecord();
     oRecord.get(0).getMetadata().getRdf().setProvidedCho(provCho);
     oRecord.get(0).getMetadata().getRdf().addAggregation(aggregation);
     return edm;

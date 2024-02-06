@@ -17,13 +17,12 @@ import de.qterra.edm.model.Rdf;
 @JsonIgnoreProperties(ignoreUnknown = true)  
 public class SerializeOaiMetadata implements OaiMetadata {
 
-  @JacksonXmlProperty(localName="RDF")
   private Rdf rdf = new SerializeRdf();
 
   /**
    * @return the rdf
    */
-  @JacksonXmlProperty(localName="RDF")
+  @JacksonXmlProperty(localName="rdf:RDF")
   public Rdf getRdf() {
     return rdf;
   }
@@ -32,7 +31,7 @@ public class SerializeOaiMetadata implements OaiMetadata {
    * @param rdf the rdf to set
    */
   @Override
-   @JacksonXmlProperty(localName="RDF")
+   @JacksonXmlProperty(localName="rdf:RDF")
   public void setRdf(Rdf rdf) {
     this.rdf = rdf;
   }

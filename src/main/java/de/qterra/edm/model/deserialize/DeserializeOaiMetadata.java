@@ -15,14 +15,13 @@ import de.qterra.edm.model.Rdf;
 @JsonIgnoreProperties(ignoreUnknown = true)  
 public class DeserializeOaiMetadata implements OaiMetadata {
 
-  @JacksonXmlProperty(localName="RDF")
   private Rdf rdf = null;
 
   /**
    * @return the rdf
    */
   @Override
-  @JacksonXmlProperty(localName="RDF")
+  @JacksonXmlProperty(localName="rdf:RDF")
   public Rdf getRdf() {
     return rdf;
   }

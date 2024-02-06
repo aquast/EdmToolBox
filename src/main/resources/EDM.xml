@@ -6,14 +6,11 @@
   <responseDate>2024-01-30T08:58:47Z</responseDate>
   <request verb="ListRecords" identifier="oai:danrw:de:20240132-12345-min" metadataPrefix="edm">http://localhost:8080/oai-pmh/2.0</request>
 <ListRecords>
-
-  
-<record>
   <header>
     <identifier>oai:danrw:de:20240132-12345-min</identifier>
     <datestamp>2024-01-30T08:54:26Z</datestamp>
   </header>
-
+<record>
 <metadata>
 <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:edm="http://www.europeana.eu/schemas/edm/" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <edm:ProvidedCHO rdf:about="0AF2C1CB-B876-5628-217E-44F5C72E2612-02274757">
@@ -59,5 +56,4 @@
 </rdf:RDF>
   </metadata>
 </record>
-
 </ListRecords></OAI-PMH>

@@ -22,8 +22,7 @@ public class DeserializeRdf implements Rdf{
   private final String dctermsXmlns = "http://purl.org/dc/terms/"; 
   
   private ProvidedCHO providedCHO = new DeserializeProvidedCHO();
-  @JacksonXmlElementWrapper(useWrapping = false)
-  private ArrayList<Aggregation> aggregation = new ArrayList<>();
+  private ArrayList<DeserializeAggregation> aggregation = new ArrayList<>();
   
   /**
    * @return the rdfXmlns
@@ -71,16 +70,16 @@ public class DeserializeRdf implements Rdf{
   @Override
   public void addAggregation(Aggregation aggregation) {
     if(this.aggregation == null) {
-      this.aggregation = new ArrayList<Aggregation>();
+      this.aggregation = new ArrayList<DeserializeAggregation>();
     }
-    this.aggregation.add(aggregation);
+    this.aggregation.add((DeserializeAggregation) aggregation);
   }
 
   /**
    * @return the providedCHO
    */
   @Override
-  @JacksonXmlProperty(localName="ProvidedCHO")
+  @JacksonXmlProperty(localName="edm:ProvidedCHO")
   public ProvidedCHO getProvidedCho() {
     return providedCHO;
   }
@@ -89,8 +88,9 @@ public class DeserializeRdf implements Rdf{
    * @return the aggregation
    */
   @Override
-  @JacksonXmlProperty(localName="Aggregation")
-  public ArrayList<Aggregation> getAggregation() {
+  @JacksonXmlElementWrapper(useWrapping = false)
+  @JacksonXmlProperty(localName="ore:Aggregation")
+  public ArrayList<DeserializeAggregation> getAggregation() {
     return aggregation;
   }
 
@@ -98,12 +98,13 @@ public class DeserializeRdf implements Rdf{
    * @param aggregation the aggregation to set
    */
   @Override
+  @JacksonXmlElementWrapper(useWrapping = false)
   @JacksonXmlProperty(localName="Aggregation")
-  public void setAggregation(ArrayList<Aggregation> aggregation) {
+  public void setAggregation(ArrayList<? extends Aggregation> aggregation) {
     if(this.aggregation == null) {
-      this.aggregation = new ArrayList<Aggregation>();
+      this.aggregation = new ArrayList<DeserializeAggregation>();
     }
-    this.aggregation = aggregation;
+    this.aggregation = (ArrayList<DeserializeAggregation>) aggregation;
   }
 
   /**

@@ -20,37 +20,43 @@ import de.qterra.edm.model.OaiRecord;
 public class DeserializeOaiMethod implements OaiMethod{
   
   public DeserializeOaiMethod () {
+    if(oaiRecord == null) {
+      oaiRecord = new ArrayList<DeserializeOaiRecord>();
+    }
+    oaiRecord.add(new DeserializeOaiRecord());
     
   }
 
-  //public DeserializeOaiMethod(String methodName) {
-   // if(oaiRecord == null) {
-   //   oaiRecord = new ArrayList<DeserializeOaiRecord>();
-   // }
-   // oaiRecord.add(new DeserializeOaiRecord());
+  public DeserializeOaiMethod(String methodName) {
+    if(oaiRecord == null) {
+      oaiRecord = new ArrayList<DeserializeOaiRecord>();
+    }
+    oaiRecord.add(new DeserializeOaiRecord());
   
-  //}
+  }
 
   
   @JacksonXmlProperty(localName="record")
   @JacksonXmlElementWrapper(useWrapping = false)
-  private ArrayList<OaiRecord> oaiRecord = new ArrayList<>();
+  private ArrayList<DeserializeOaiRecord> oaiRecord = new ArrayList<DeserializeOaiRecord>();
 
   
   /**
    * @return the oaiRecord element
    */
+  @Override
   @JacksonXmlProperty(localName="record")
-  public ArrayList<OaiRecord> getRecord() {
+  public ArrayList<DeserializeOaiRecord> getRecord() {
     return oaiRecord;
   }
 
   /**
    * @param oaiRecord the oaiRecord to set
    */
+  @Override
   @JacksonXmlProperty(localName="record")
-  public void setRecord(ArrayList<OaiRecord> oaiRecord) {
-    this.oaiRecord = oaiRecord;
+  public void setRecord(ArrayList<? extends OaiRecord> oaiRecord) {
+    this.oaiRecord = (ArrayList<DeserializeOaiRecord>) oaiRecord;
     
   }
 

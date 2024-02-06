@@ -21,8 +21,10 @@ public class SerializeXml {
     XmlMapper xmlMapper = new XmlMapper();
     String xml;
     try {
+      xmlMapper.writerFor(SerializeEdm.class);
       xml = xmlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(edm);
       System.out.println(xml);
+      
       //System.out.println("XML Desearialzing....");
       //SerializeEdm edm = xmlMapper.readValue(xml, SerializeEdm.class);
       //System.out.println(xmlMapper.writeValueAsString(edm));
