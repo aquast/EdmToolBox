@@ -14,27 +14,27 @@ import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
-import de.qterra.edm.model.Edm;
-import de.qterra.edm.model.deserialize.DeserializeEdm;
+import de.qterra.edm.model.OaiPmh;
+import de.qterra.edm.model.deserialize.DeserializeOaiPmh;
 
 /**
  * 
  */
-public class DeserializeXml {
+public class DeserializeOaiPmhXml {
     
-  public DeserializeXml(File file) {
+  public DeserializeOaiPmhXml(File file) {
     this.importFile = file;
-    edmIs = loadXml();
+    xmlIs = loadXml();
   }
 
-  public DeserializeXml(String fileName) {
+  public DeserializeOaiPmhXml(String fileName) {
     importFile = new File(fileName);
-    edmIs = loadXml();
+    xmlIs = loadXml();
   }
 
-  private Edm edm = new DeserializeEdm();
+  private OaiPmh oaiPmh = new DeserializeOaiPmh();
   private File importFile = null;
-  private InputStream edmIs = null;
+  private InputStream xmlIs = null;
   
   private InputStream loadXml() {
     BufferedInputStream bis = null;
@@ -48,11 +48,11 @@ public class DeserializeXml {
     return bis;
   }
   
-  public Edm deserialize() {
-    DeserializeEdm edm = null;
+  public OaiPmh deserialize() {
+    DeserializeOaiPmh oaiPmh = null;
     XmlMapper xmlMapper = new XmlMapper();
     try {
-      edm = xmlMapper.readValue(edmIs, DeserializeEdm.class);
+      oaiPmh = xmlMapper.readValue(xmlIs, DeserializeOaiPmh.class);
 
     } catch (StreamReadException e) {
       // TODO Auto-generated catch block
@@ -66,24 +66,24 @@ public class DeserializeXml {
     }
 
     
-    return edm;
+    return oaiPmh;
     }
 
 
   
   /**
-   * @return the edm
+   * @return the oaiPmh
    */
-  public Edm getEdm() {
-    return edm;
+  public OaiPmh getEdm() {
+    return oaiPmh;
   }
 
 
   /**
-   * @param edm the edm to set
+   * @param oaiPmh the oaiPmh to set
    */
-  public void setEdm(Edm edm) {
-    this.edm = edm;
+  public void setEdm(OaiPmh edm) {
+    this.oaiPmh = edm;
   }
   
   

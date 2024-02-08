@@ -9,17 +9,17 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-import de.qterra.edm.model.deserialize.DeserializeEdm;
-import de.qterra.edm.model.serialize.SerializeEdm;
+import de.qterra.edm.model.deserialize.DeserializeOaiPmh;
+import de.qterra.edm.model.serialize.SerializeOaiPmh;
 
 /**
  * 
  */
-@JsonDeserialize(as = DeserializeEdm.class)
-// @JsonSerialize(as = SerializeEdm.class)
+@JsonDeserialize(as = DeserializeOaiPmh.class)
+// @JsonSerialize(as = SerializeOaiPmh.class)
 @JacksonXmlRootElement(localName="OAI-PMH")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public interface Edm {
+public interface OaiPmh {
   
   /**
    * @return the oaiXmlns

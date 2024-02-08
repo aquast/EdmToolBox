@@ -1,13 +1,13 @@
 /**
  * 
  */
-package de.qterra.edm.model.deserialize;
+package de.qterra.edm.model.serialize;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-import de.qterra.edm.model.Edm;
+import de.qterra.edm.model.OaiPmh;
 import de.qterra.edm.model.OaiMethod;
 
 /**
@@ -15,8 +15,12 @@ import de.qterra.edm.model.OaiMethod;
  */
 @JacksonXmlRootElement(localName="OAI-PMH")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class DeserializeEdm implements Edm {
+public class SerializeOaiPmh implements OaiPmh {
   
+  public SerializeOaiPmh() {
+    // oaiMethod = new SerializeOaiMethod("ListRecords");
+
+  }
 
   private final String oaiXmlns = "http://www.openarchives.org/OAI/2.0/"; 
   private final String xsiXmlns = "http://www.w3.org/2001/XMLSchema-instance"; 
@@ -24,7 +28,7 @@ public class DeserializeEdm implements Edm {
   private String ResponseDate = null; 
 
   @JacksonXmlProperty(localName="ListRecords")
-  private DeserializeOaiMethod oaiMethod = new DeserializeOaiMethod();
+  private OaiMethod oaiMethod = new SerializeOaiMethod("ListRecords");
 
   /**
    * @return the oaiXmlns
@@ -49,7 +53,7 @@ public class DeserializeEdm implements Edm {
    */
   @Override
   @JacksonXmlProperty(localName="ListRecords")
-  public OaiMethod getOaiMethod() {
+  public de.qterra.edm.model.OaiMethod getOaiMethod() {
     return oaiMethod;
   }
 
@@ -57,7 +61,7 @@ public class DeserializeEdm implements Edm {
    * @return the xsiSchemaLocation
    */
   @Override
-  @JacksonXmlProperty(localName="schemaLocation", isAttribute = true)
+  @JacksonXmlProperty(localName="xsi:schemaLocation", isAttribute = true)
   public String getXsiSchemaLocation() {
     return xsiSchemaLocation;
   }
@@ -77,15 +81,11 @@ public class DeserializeEdm implements Edm {
     this.ResponseDate = rDate;
   }
 
-
-
-  /**
-   * @param oMethod the oMethod to set
-   */
   @Override
-  @JacksonXmlProperty(localName="ListRecord")
+  @JacksonXmlProperty(localName="ListRecords")
   public void setOaiMethod(OaiMethod oaiMethod) {
-    this.oaiMethod = (DeserializeOaiMethod) oaiMethod;    
+    this.oaiMethod = oaiMethod;
+    
   }
 
 }

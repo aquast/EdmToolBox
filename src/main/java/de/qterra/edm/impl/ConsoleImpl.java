@@ -5,94 +5,103 @@ package de.qterra.edm.impl;
 
 import java.util.ArrayList;
 
-import de.qterra.edm.model.Edm;
-import de.qterra.edm.model.ProvidedCHO;
 import de.qterra.edm.model.Aggregation;
+import de.qterra.edm.model.OaiPmh;
 import de.qterra.edm.model.OaiRecord;
-import de.qterra.edm.model.ResourceAttribute;
+import de.qterra.edm.model.ProvidedCHO;
+import de.qterra.edm.model.Rdf;
 import de.qterra.edm.model.serialize.SerializeAggregation;
-import de.qterra.edm.model.serialize.SerializeEdm;
+import de.qterra.edm.model.serialize.SerializeOaiPmh;
 import de.qterra.edm.model.serialize.SerializeProvidedCHO;
 import de.qterra.edm.model.serialize.SerializeResourceAttribute;
-
 
 /**
  * 
  */
 public class ConsoleImpl {
 
-  String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "src/main/resources/EDM.xml";
-  
-  //String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "src/main/resources/OAIBase.xml";
-
   /**
    * @param args
    */
-  public static void main(String[] args) {
+    String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "src/main/resources/OaiPmh.xml";
     
-    ConsoleImpl impl = new ConsoleImpl();
-     SerializeEdm exEdm = (SerializeEdm) impl.generateExampleEDM();
-     impl.serializeXml(exEdm);
+    //static String filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "src/main/resources/OAIBase.xml";
 
-    if (args != null && args.length > 0) {
-      impl.filePath = args[0];
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+      
+      ConsoleImpl conImpl = new ConsoleImpl();
+      OaiPmhImpl impl = new OaiPmhImpl();
+      SerializeOaiPmh exOaiPmh = (SerializeOaiPmh) conImpl.generateExampleOaiPmh();
+      // impl.serializeXml(exOaiPmh);
+
+      if (args != null && args.length > 0) {
+        conImpl.filePath = args[0];
+      }
+      
+      impl.setFilePath(conImpl.filePath);
+      
+      OaiPmh resultOaiPmh = impl.deserializeXml();
+      // System.out.println(resultOaiPmh.getOaiMethod().getRecord().get(0).getMetadata().getRdf().getProvidedCho());
+      //impl.serializeXml(resultOaiPmh);
+
+      conImpl.filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "src/main/resources/ExampleSip/EDM.xml";
+      EdmImpl edmImpl = new EdmImpl(conImpl.filePath);
+      Rdf resultEdm = edmImpl.deserializeXml();
+      // System.out.println(resultOaiPmh.getOaiMethod().getRecord().get(0).getMetadata().getRdf().getProvidedCho());
+      edmImpl.serializeXml(resultEdm);
+      
+      ArrayList<String> replacement = new ArrayList<>();
+      replacement.add("https://www.q-.terra.de");
+      replacement.add("https://www.test.de");
+      
+      AggregationElementOperator rISB = new AggregationElementOperator(conImpl.filePath);
+      rISB.replaceAllIsShownBy(replacement);
+      System.out.println(rISB.toString());
+      
     }
     
-      Edm resultEdm = impl.deserializeXml();
-      System.out.println(resultEdm.getOaiMethod().getRecord().get(0).getMetadata().getRdf().getProvidedCho());
-      impl.serializeXml(resultEdm);
-    
-  }
-  
-  public Edm deserializeXml() {
-    DeserializeXml dsXml = new DeserializeXml(filePath);
-    return dsXml.deserialize();
-    
-  }
+    /**
+     * @return SerializeOaiPmh as SerializeOaiPmh object for testing
+     */
+    public OaiPmh generateExampleOaiPmh() {
+      
+      ArrayList<String> creator = new ArrayList<>();
+      creator.add("Christiane Wesling");
+      ArrayList<String> description = new ArrayList<>();
+      description.add("Bericht über ein neues Leben");
+      description.add("Erfahrungen mit dem Eierrat");
+      ArrayList<String> extent = new ArrayList<>();
+      extent.add("100 S.");
+      extent.add("3 Tafeln");
+      String edmType ="TEXT";
+      String dcType="Archivalie";
 
-  public void serializeXml(Edm edm) {
-    SerializeXml sXml = new SerializeXml();
-    sXml.setEdm(edm);
-    sXml.serialize();    
-  }
-    
-  /**
-   * @return SerializeEdm as SerializeEdm object for testing
-   */
-  public Edm generateExampleEDM() {
-    
-    ArrayList<String> creator = new ArrayList<>();
-    creator.add("Christiane Wesling");
-    ArrayList<String> description = new ArrayList<>();
-    description.add("Bericht über ein neues Leben");
-    description.add("Erfahrungen mit dem Eierrat");
-    ArrayList<String> extent = new ArrayList<>();
-    extent.add("100 S.");
-    extent.add("3 Tafeln");
-    String edmType ="TEXT";
-    String dcType="Archivalie";
+      OaiPmh oaiPmh = new SerializeOaiPmh();
+      
+      ProvidedCHO provCho = new SerializeProvidedCHO();
+      provCho.addDcTitle("Eine neue Hühnerfarm");
+      provCho.setDcCreator(creator);
+      provCho.setDcDescription(description);
+      provCho.addDcContributor("Andres Quast");
+      provCho.addDcContributor("Björn Quast");
+      provCho.setDctermsExtent(extent);
+      provCho.setEdmType(edmType);
+      provCho.addDcType(dcType);
 
-    Edm edm = new SerializeEdm();
-    
-    ProvidedCHO provCho = new SerializeProvidedCHO();
-    provCho.addDcTitle("Eine neue Hühnerfarm");
-    provCho.setDcCreator(creator);
-    provCho.setDcDescription(description);
-    provCho.addDcContributor("Andres Quast");
-    provCho.addDcContributor("Björn Quast");
-    provCho.setDctermsExtent(extent);
-    provCho.setEdmType(edmType);
-    provCho.addDcType(dcType);
+      Aggregation aggregation = new SerializeAggregation();
+      aggregation.setEdmDataProvider("Hochschulbibliothekszentrum NRW");
+      aggregation.setEdmAggregatedCHO(new SerializeResourceAttribute("12345"));
+      
+      ArrayList<? extends OaiRecord> oRecord = oaiPmh.getOaiMethod().getRecord();
+      oRecord.get(0).getMetadata().getRdf().setProvidedCho(provCho);
+      oRecord.get(0).getMetadata().getRdf().addAggregation(aggregation);
+      return oaiPmh;
+      
+    }
 
-    Aggregation aggregation = new SerializeAggregation();
-    aggregation.setEdmDataProvider("Hochschulbibliothekszentrum NRW");
-    aggregation.setEdmAggregatedCHO(new SerializeResourceAttribute("12345"));
-    
-    ArrayList<? extends OaiRecord> oRecord = edm.getOaiMethod().getRecord();
-    oRecord.get(0).getMetadata().getRdf().setProvidedCho(provCho);
-    oRecord.get(0).getMetadata().getRdf().addAggregation(aggregation);
-    return edm;
-    
   }
 
-}
+

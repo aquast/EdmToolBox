@@ -3,13 +3,9 @@
  */
 package de.qterra.edm.model;
 
-import java.util.UUID;
-
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import de.qterra.edm.model.deserialize.DeserializeAggregation;
-import de.qterra.edm.model.serialize.SerializeAggregation;
 
 /**
  * 
@@ -40,7 +36,7 @@ public interface Aggregation {
   /**
    * @return the isShownAt
    */
-  public String getEdmIsShownAt();
+  public ResourceAttribute getEdmIsShownAt();
 
   /**
    * @return the object
@@ -74,7 +70,7 @@ public interface Aggregation {
   /**
    * @param isShownAt the isShownAt to set
    */
-  public void setEdmIsShownAt(String isShownAt);
+  public void setEdmIsShownAt(ResourceAttribute isShownBy);
   /**
    * @param object the object to set
    */

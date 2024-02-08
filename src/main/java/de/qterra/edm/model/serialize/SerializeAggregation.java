@@ -25,7 +25,7 @@ public class SerializeAggregation implements Aggregation {
 
   private SerializeResourceAttribute isShownBy = null;
 
-  private String isShownAt = null;
+  private SerializeResourceAttribute isShownAt = null;
 
   @JacksonXmlProperty(localName = "edm:object")
   private SerializeResourceAttribute object = null;
@@ -86,7 +86,7 @@ public class SerializeAggregation implements Aggregation {
    */
   @Override
   @JacksonXmlProperty(localName = "edm:isShownAt")
-  public String getEdmIsShownAt() {
+  public SerializeResourceAttribute getEdmIsShownAt() {
     return isShownAt;
   }
 
@@ -149,8 +149,8 @@ public class SerializeAggregation implements Aggregation {
    */
   @Override
   @JacksonXmlProperty(localName = "edm:isShownAt")
-  public void setEdmIsShownAt(String isShownAt) {
-    this.isShownAt = isShownAt;
+  public void setEdmIsShownAt(ResourceAttribute isShownAt) {
+    this.isShownAt = (SerializeResourceAttribute) isShownAt;
   }
 
   /**

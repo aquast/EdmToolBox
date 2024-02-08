@@ -25,7 +25,7 @@ public class DeserializeAggregation implements Aggregation {
 
   private ResourceAttribute isShownBy = null;
 
-  private String isShownAt = null;
+  private ResourceAttribute isShownAt = null;
 
   private ResourceAttribute object = null;
   
@@ -79,7 +79,7 @@ public class DeserializeAggregation implements Aggregation {
    * @return the isShownAt
    */
   @JacksonXmlProperty(localName = "edm:isShownAt")
-  public String getEdmIsShownAt() {
+  public ResourceAttribute getEdmIsShownAt() {
     return isShownAt;
   }
 
@@ -140,7 +140,7 @@ public class DeserializeAggregation implements Aggregation {
    */
    @Override
    @JacksonXmlProperty(localName = "isShownAt")
-  public void setEdmIsShownAt(String isShownAt) {
+  public void setEdmIsShownAt(ResourceAttribute isShownAt) {
     this.isShownAt = isShownAt;
   }
 
