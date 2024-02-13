@@ -1,12 +1,19 @@
 package de.qterra.edm.impl;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import de.qterra.edm.model.Aggregation;
 import de.qterra.edm.model.Rdf;
+import de.qterra.edm.model.ResourceAttribute;
+import de.qterra.edm.model.WebResource;
+import de.qterra.edm.model.deserialize.DeserializeResourceAttribute;
 import de.qterra.edm.model.serialize.SerializeRdf;
 
 /**
@@ -17,7 +24,8 @@ import de.qterra.edm.model.serialize.SerializeRdf;
  */
 public class AggregationElementOperator {
   //TODO: Implement all operations on the data you wish to have ;-)
-  
+  final static Logger logger = LogManager.getLogger(AggregationElementOperator.class);
+
   /**
    * Constructor takes deserialized EDM metadata (as Rdf object).  
    * @param rdf
@@ -44,10 +52,28 @@ public class AggregationElementOperator {
    * @param replacement
    */
   public void replaceAllIsShownBy(ArrayList<String> replacement) {
+    Hashtable<String, String> replaceTable = new Hashtable<>();
     ArrayList<? extends Aggregation> aggregation = rdf.getAggregation();
+    
     if(replacement.size() == aggregation.size()) {
       for(int i = 0; i < aggregation.size(); i++) {
+        replaceTable.put(aggregation.get(i).getEdmIsShownBy().getRdfResource(),replacement.get(i));
+        logger.info(aggregation.get(i).getEdmIsShownBy().getRdfResource() + ", " + replacement.get(i));
         aggregation.get(i).getEdmIsShownBy().setRdfResource(replacement.get(i));
+        
+      }
+    }
+    ArrayList<? extends WebResource> webResource = rdf.getWebResource();
+    if(replacement.size() == webResource.size()) {
+      for(int i = 0; i < webResource.size(); i++) {
+        if(webResource.get(i).getEdmIsNextInSequence().getRdfResource() != null ){
+          logger.info(webResource.get(i).getEdmIsNextInSequence().getRdfResource());
+          String key = webResource.get(i).getEdmIsNextInSequence().getRdfResource();
+          webResource.get(i).setEdmIsNextInSequence(new DeserializeResourceAttribute(key));
+          logger.info(replaceTable.get(webResource.get(i).getEdmIsNextInSequence().getRdfResource()));
+        };
+        webResource.get(i).setWebResourceAbout(replacement.get(i));
+        
       }
     }
   }

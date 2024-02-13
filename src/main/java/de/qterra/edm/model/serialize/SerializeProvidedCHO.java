@@ -5,6 +5,7 @@ package de.qterra.edm.model.serialize;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
@@ -12,6 +13,9 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import de.qterra.edm.model.ProvidedCHO;
 import de.qterra.edm.model.ResourceAttribute;
+import de.qterra.edm.model.deserialize.DeserializeAboutAttribute;
+import de.qterra.edm.model.AboutAttribute;
+
 
 /**
  * 
@@ -49,6 +53,7 @@ public class SerializeProvidedCHO implements ProvidedCHO {
   private ArrayList<String> dctermsProvenance = new ArrayList<>();
   
   private String edmType = new String();
+  private String cHOAbout = new String();
   
   // add to List
   /**
@@ -263,7 +268,15 @@ public class SerializeProvidedCHO implements ProvidedCHO {
   public String getEdmType() {
     return edmType;
   }
-  
+  /**
+   *
+   */
+  @Override
+  @JacksonXmlProperty(localName = "rdf:about", isAttribute = true)
+  public String getProvidedCHOAbout() {
+    return this.cHOAbout;
+  }
+
   // Setter
   /**
    * @param dctermsCreated the dctermsCreated to set
@@ -387,5 +400,14 @@ public class SerializeProvidedCHO implements ProvidedCHO {
   @JacksonXmlProperty(localName="dc:date")
   public void setDcDate(ArrayList<String> date) {
     this.dcDate = date;
+  }
+
+  /**
+   *@param providedCHOAbout
+   */
+  @Override
+  @JacksonXmlProperty(localName="rdf:about")
+  public void setProvidedCHOAbout(String ProvidedCHOAbout) {
+    this.cHOAbout = ProvidedCHOAbout;
   }
 }

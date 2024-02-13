@@ -5,6 +5,9 @@ package de.qterra.edm.impl;
 
 import java.util.ArrayList;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import de.qterra.edm.model.Aggregation;
 import de.qterra.edm.model.OaiPmh;
 import de.qterra.edm.model.OaiRecord;
@@ -19,6 +22,8 @@ import de.qterra.edm.model.serialize.SerializeResourceAttribute;
  * 
  */
 public class ConsoleImpl {
+  
+  final static Logger logger = LogManager.getLogger(ConsoleImpl.class);
 
   /**
    * @param args
@@ -44,22 +49,22 @@ public class ConsoleImpl {
       impl.setFilePath(conImpl.filePath);
       
       OaiPmh resultOaiPmh = impl.deserializeXml();
-      // System.out.println(resultOaiPmh.getOaiMethod().getRecord().get(0).getMetadata().getRdf().getProvidedCho());
+      // logger.debug(resultOaiPmh.getOaiMethod().getRecord().get(0).getMetadata().getRdf().getProvidedCho());
       //impl.serializeXml(resultOaiPmh);
 
       conImpl.filePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "src/main/resources/ExampleSip/EDM.xml";
       EdmImpl edmImpl = new EdmImpl(conImpl.filePath);
       Rdf resultEdm = edmImpl.deserializeXml();
-      // System.out.println(resultOaiPmh.getOaiMethod().getRecord().get(0).getMetadata().getRdf().getProvidedCho());
-      edmImpl.serializeXml(resultEdm);
+      logger.debug(resultOaiPmh.getOaiMethod().getRecord().get(0).getMetadata().getRdf().getProvidedCho());
+      // edmImpl.serializeXml(resultEdm);
       
-      ArrayList<String> replacement = new ArrayList<>();
-      replacement.add("https://www.q-.terra.de");
-      replacement.add("https://www.test.de");
+      ArrayList<String> isShownByReplacement = new ArrayList<>();
+      isShownByReplacement.add("https://www.q-terra.de/Part-1/000-0002.csv");
+      isShownByReplacement.add("https://www.q-terra.de/Part-2/000-0001.txt");
       
       AggregationElementOperator rISB = new AggregationElementOperator(conImpl.filePath);
-      rISB.replaceAllIsShownBy(replacement);
-      System.out.println(rISB.toString());
+       rISB.replaceAllIsShownBy(isShownByReplacement);
+       // logger.info(rISB.toString());
       
     }
     
@@ -90,6 +95,7 @@ public class ConsoleImpl {
       provCho.setDctermsExtent(extent);
       provCho.setEdmType(edmType);
       provCho.addDcType(dcType);
+      provCho.setProvidedCHOAbout("test");
 
       Aggregation aggregation = new SerializeAggregation();
       aggregation.setEdmDataProvider("Hochschulbibliothekszentrum NRW");

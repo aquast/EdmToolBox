@@ -14,15 +14,16 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import de.qterra.edm.model.deserialize.DeserializeProvidedCHO;
 import de.qterra.edm.model.deserialize.DeserializeRdf;
+import de.qterra.edm.model.deserialize.DeserializeWebResource;
 import de.qterra.edm.model.serialize.SerializeProvidedCHO;
 import de.qterra.edm.model.serialize.SerializeResourceAttribute;
 
 /**
  * 
  */
-@JsonDeserialize(as = DeserializeProvidedCHO.class)
-// @JsonSerialize(as = SerializeProvidedCHO.class)
-public interface ProvidedCHO {
+@JsonDeserialize(as = DeserializeWebResource.class)
+// @JsonSerialize(as = SerializeWebResource.class)
+public interface WebResource {
   
 
   // add to List
@@ -35,14 +36,6 @@ public interface ProvidedCHO {
    */
   public void addDctermsIsReferencedBy(ResourceAttribute isReferencedBy);
   /**
-   * @param add item to dctermsProvenance
-   */
-  public void addDctermsProvenance(String provenance);
-  /**
-   * @param add item to dcTitle
-   */
-  public void addDcTitle(String title);
-  /**
    * @param add item to dcDescription
    */
   public void addDcDescription(String description);
@@ -51,35 +44,11 @@ public interface ProvidedCHO {
    */
   public void addDcCreator(String creator);
   /**
-   * @param dcContributor the dcContributor to set
-   */
-  public void addDcContributor(String contributor);
-  /**
-   * @param dcIdentifier the dcIdentifier to set
-   */
-  public void addDcIdentifier(String identifier);
-  /**
-   * @param dcPublisher the dcPublisher to set
-   */
-  public void addDcPublisher(String publisher);
-  /**
-   * @param dcLanguage the dcLanguage to set
-   */
-  public void addDcLanguage(String language);
-  /**
    * @param dcType the dcType to set
    */
   public void addDcType(String dcType);
-  /**
-   * @param dcDate the dcDate to set
-   */
-  public void addDcDate(String date);
 
   // Getter
-  /**
-   * @return the dcTitle
-   */
-  public List<String> getDcTitle();
   /**
    * @return the dcDescription
    */
@@ -89,29 +58,9 @@ public interface ProvidedCHO {
    */
   public ArrayList<String> getDcCreator();
   /**
-   * @return the dcContributor
-   */
-  public ArrayList<String> getDcContributor();
-  /**
-   * @return the dcIdentifier
-   */
-  public ArrayList<String> getDcIdentifier();
-  /**
-   * @return the dcPublisher
-   */
-  public ArrayList<String> getDcPublisher();
-  /**
-   * @return the dcLanguage
-   */
-  public ArrayList<String> getDcLanguage();
-  /**
    * @return the dcType
    */
   public ArrayList<String> getDcType();
-  /**
-   * @return the dcDate
-   */
-  public ArrayList<String> getDcDate();
   /**
    * @return the dctermsCreated
    */
@@ -129,17 +78,15 @@ public interface ProvidedCHO {
    */
   public ArrayList<? extends ResourceAttribute> getDctermsIsReferencedBy();
   /**
-   * @return the dctermsProvenance
-   */
-  public ArrayList<String> getDctermsProvenance();
-  /**
    * @return the edmType
    */
-  public String getEdmType();
+  public ResourceAttribute getEdmIsNextInSequence();
+  
   /**
    * @return
    */
-  public String getProvidedCHOAbout();
+  public String getWebResourceAbout();
+
   
   // Setter
   /**
@@ -159,18 +106,6 @@ public interface ProvidedCHO {
    */
   public void setDctermsIsReferencedBy(ArrayList<? extends ResourceAttribute> dctermsIsReferencedBy);
   /**
-   * @param dctermsProvenance the dctermsProvenance to set
-   */
-  public void setDctermsProvenance(ArrayList<String> dctermsProvenance);
-  /**
-   * @param edmType the edmType to set
-   */
-  public void setEdmType(String edmType);
-  /**
-   * @param dcTitle the dcTitle to set
-   */
-  public void setDcTitle(ArrayList<String> title);
-  /**
    * @param dcDescription the dcDescription to set
    */
   public void setDcDescription(ArrayList<String> description);
@@ -179,31 +114,15 @@ public interface ProvidedCHO {
    */
   public void setDcCreator(ArrayList<String> creator);
   /**
-   * @param dcContributor the dcContributor to set
-   */
-  public void setDcContributor(ArrayList<String> contributor);
-  /**
-   * @param dcIdentifier the dcIdentifier to set
-   */
-  public void setDcIdentifier(ArrayList<String> identifier);
-  /**
-   * @param dcPublisher the dcPublisher to set
-   */
-  public void setDcPublisher(ArrayList<String> publisher);
-  /**
-   * @param dcLanguage the dcLanguage to set
-   */
-  public void setDcLanguage(ArrayList<String> language);
-  /**
    * @param dcType the dcType to set
    */
- public void setDcType(ArrayList<String> type);
-  /**
-   * @param dcDate the dcDate to set
-   */
-  public void setDcDate(ArrayList<String> date);
-  /**
-   * @param ProvidedCHOAbout
-   */
-  public void setProvidedCHOAbout(String ProvidedCHOAbout);
+   public void setDcType(ArrayList<String> type);
+   /**
+    * @param dcType the edmIsNextInSequebce to set
+    */
+    public void setEdmIsNextInSequence(ResourceAttribute ResIdentifier);
+    /**
+     * @param WebResourceAbout
+     */
+    public void setWebResourceAbout(String WebResourceAbout);
 }

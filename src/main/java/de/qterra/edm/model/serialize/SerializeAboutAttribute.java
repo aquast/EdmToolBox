@@ -32,7 +32,7 @@ public class SerializeAboutAttribute implements AboutAttribute  {
   /**
    * @param rdfAbout the rdfAbout to set
    */
-  @JacksonXmlProperty(localName = "rdf:about", isAttribute = true)
+  @JacksonXmlProperty(localName = "about", isAttribute = true)
   public void setRdfAbout(String rdfAbout) {
     this.rdfAbout = rdfAbout;
   }

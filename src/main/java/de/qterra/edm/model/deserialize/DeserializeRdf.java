@@ -10,6 +10,8 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import de.qterra.edm.model.Aggregation;
 import de.qterra.edm.model.ProvidedCHO;
 import de.qterra.edm.model.Rdf;
+import de.qterra.edm.model.WebResource;
+import de.qterra.edm.model.serialize.SerializeWebResource;
 
 @JsonIgnoreProperties(ignoreUnknown = true)  
 @JacksonXmlRootElement(localName="rdf:RDF")
@@ -21,9 +23,10 @@ public class DeserializeRdf implements Rdf{
   private final String dcXmlns = "http://purl.org/dc/elements/1.1/"; 
   private final String dctermsXmlns = "http://purl.org/dc/terms/"; 
   
-  private ProvidedCHO providedCHO = new DeserializeProvidedCHO();
+  private DeserializeProvidedCHO providedCHO = new DeserializeProvidedCHO();
   private ArrayList<DeserializeAggregation> aggregation = new ArrayList<>();
-  
+  private ArrayList<DeserializeWebResource> webResource = new ArrayList<>();
+
   /**
    * @return the rdfXmlns
    */
@@ -68,20 +71,33 @@ public class DeserializeRdf implements Rdf{
    * @param aggregation the aggregation to set
    */
   @Override
-  public void addAggregation(Aggregation aggregation) {
+  public void addAggregation(Aggregation Aggregation) {
     if(this.aggregation == null) {
       this.aggregation = new ArrayList<DeserializeAggregation>();
     }
-    this.aggregation.add((DeserializeAggregation) aggregation);
+    this.aggregation.add((DeserializeAggregation) Aggregation);
+  }
+  
+  /**
+   * @param webResource the webResource to add
+   */
+  @Override
+  public void addWebResource(WebResource WebResource) {
+    if(this.webResource == null) {
+      this.webResource = new ArrayList<DeserializeWebResource>();
+    }
+    this.webResource.add((DeserializeWebResource) WebResource);
   }
 
+
+  // Getter
   /**
    * @return the providedCHO
    */
   @Override
   @JacksonXmlProperty(localName="edm:ProvidedCHO")
   public ProvidedCHO getProvidedCho() {
-    return providedCHO;
+    return (DeserializeProvidedCHO) providedCHO;
   }
 
   /**
@@ -92,6 +108,25 @@ public class DeserializeRdf implements Rdf{
   @JacksonXmlProperty(localName="ore:Aggregation")
   public ArrayList<DeserializeAggregation> getAggregation() {
     return aggregation;
+  }
+  
+
+  @Override
+  @JacksonXmlElementWrapper(useWrapping = false)
+  @JacksonXmlProperty(localName="edm:WebResource")
+  public ArrayList<? extends WebResource> getWebResource() {
+    return this.webResource;
+  }
+
+
+  // Setter 
+  /**
+   * @param providedCHO the providedCHO to set
+   */
+  @Override
+  @JacksonXmlProperty(localName="ProvidedCHO")
+  public void setProvidedCho(ProvidedCHO providedCHO) {
+    this.providedCHO =  (DeserializeProvidedCHO) providedCHO;
   }
 
   /**
@@ -107,13 +142,15 @@ public class DeserializeRdf implements Rdf{
     this.aggregation = (ArrayList<DeserializeAggregation>) aggregation;
   }
 
-  /**
-   * @param providedCHO the providedCHO to set
-   */
   @Override
-  @JacksonXmlProperty(localName="ProvidedCHO")
-  public void setProvidedCho(ProvidedCHO providedCHO) {
-    this.providedCHO = providedCHO;
+  @JacksonXmlElementWrapper(useWrapping = false)
+  @JacksonXmlProperty(localName="WebResource")
+  public void setWebResource(ArrayList<? extends WebResource> webResource) {
+    if(this.webResource == null) {
+      this.webResource = new ArrayList<DeserializeWebResource>();
+    }
+    this.webResource = (ArrayList<DeserializeWebResource>) webResource;
+    
   }
 
 

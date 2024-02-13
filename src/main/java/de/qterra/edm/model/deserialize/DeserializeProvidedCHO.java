@@ -40,7 +40,8 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
   private ArrayList<String> dctermsProvenance = new ArrayList<>();
   
   private String edmType = new String();
-  
+  private String cHOAbout = new String();
+
   // add to List
   /**
    * @param add item to dctermsExtent
@@ -243,6 +244,14 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
   public String getEdmType() {
     return edmType;
   }
+  /**
+  *
+  */
+ @Override
+ @JacksonXmlProperty(localName = "rdf:about", isAttribute = true)
+ public String getProvidedCHOAbout() {
+   return this.cHOAbout;
+ }
   
   // Setter
   /**
@@ -365,4 +374,14 @@ public class DeserializeProvidedCHO implements ProvidedCHO{
   public void setDcDate(ArrayList<String> date) {
     this.dcDate = date;
   }
+  /**
+   *@param providedCHOAbout
+   */
+  @Override
+  @JacksonXmlProperty(localName="about")
+  public void setProvidedCHOAbout(String ProvidedCHOAbout) {
+    this.cHOAbout = ProvidedCHOAbout;
+  }
+
+
 }

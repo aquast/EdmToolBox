@@ -24,10 +24,6 @@ public class SerializeEdmXml {
       xmlMapper.writerFor(SerializeRdf.class);
       xml = xmlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(rdf);
       System.out.println(xml);
-      
-      //System.out.println("XML Desearialzing....");
-      //SerializeOaiPmh rdf = xmlMapper.readValue(xml, SerializeOaiPmh.class);
-      //System.out.println(xmlMapper.writeValueAsString(rdf));
     } catch (JsonProcessingException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -50,5 +46,23 @@ public class SerializeEdmXml {
     this.rdf = rdf;
   }
   
+  /**
+   * return complete EDM metadata as serialization to String
+   */
+  @Override
+  public String toString() {
+    XmlMapper xmlMapper = new XmlMapper();
+    String xml = null;
+    try {
+      xmlMapper.writerFor(SerializeRdf.class);
+      xml = xmlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(rdf);
+    } catch (JsonProcessingException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+    return xml;
+  }
+
 
 }

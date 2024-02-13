@@ -43,9 +43,14 @@ public interface Rdf {
   public String getDctermsXmlns();
 
   /**
-   * @param aggregation the aggregation to set
+   * @param aggregation the aggregation to add
    */
   public void addAggregation(Aggregation aggregation);
+
+  /**
+   * @param webResource the webResource to add
+   */
+  public void addWebResource(WebResource webResource);
 
   /**
    * @return the providedCHO
@@ -55,17 +60,27 @@ public interface Rdf {
   /**
    * @return the aggregation
    */
-  public ArrayList<? extends Aggregation> getAggregation();
+   public ArrayList<? extends Aggregation> getAggregation();
 
   /**
-   * @param aggregation the aggregation to set
+   * @return the WebResource
    */
-  public void setAggregation(ArrayList<? extends Aggregation> aggregation);
+  public ArrayList<? extends WebResource> getWebResource();
+
 
   /**
    * @param providedCHO the providedCHO to set
    */
   public void setProvidedCho(ProvidedCHO providedCHO);
+
+  /**
+   * @param aggregation the aggregation to set
+   */
+  public void setAggregation(ArrayList<? extends Aggregation> aggregation);
   
+  /**
+   * @param aggregation the aggregation to set
+   */
+  public void setWebResource(ArrayList<? extends WebResource> webResource);
 
 }
